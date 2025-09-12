@@ -1,4 +1,4 @@
-# FilePicker does NOT work in macOS due w/ Flet version 0.28.3 due to permissions/security, so we need to run 
+# FilePicker does NOT work in macOS w/ Flet version 0.28.3 due to permissions/security, so we need to run 
 # it as a browser app, OR degrade to Flet 0.28.2 which does work in macOS.  See https://github.com/flet-dev/flet/issues/5334#issuecomment-3065024264
 
 import flet as ft
@@ -34,8 +34,11 @@ def main(page: ft.Page):
     # Other 'globals'
     page.session.set("mode", None)
     page.session.set("logger", logger)
+    page.session.set("selected_object_paths", [])  # set up an empty list to hold selected files/paths
     
     # Function to open the file picker dialog
+    # This is called when a valid directory option is selected in the file selection RadioGroup
+    # -----------------------------------------------------------
     def open_file_picker(e):
         """
         Function to open the file picker dialog.
@@ -48,81 +51,42 @@ def main(page: ft.Page):
         )
         
     # Callback function to handle the result of the file picker dialog
+    # This function saves the selected files/paths in ft.page.session for later processing
+    # -----------------------------------------------------------
     def pick_files_result(e: ft.FilePickerResultEvent):
         """
         Callback function executed when the file picker dialog is closed.
-        It updates the UI and passes the selected files to the processing function.
+        It updates the UI and passes the selected file/paths to ft.page.session ...the processing function.
         """
         if e.files:
             num_files = len(e.files)
             directory = os.path.dirname(e.files[0].path)
             result_text.value = f"{num_files} files selected from {directory}."
-            # Loop through the selected files and print their names and paths
+            
+            # Clear the previous selection
+            page.session.set("selected_object_paths", [])
+            
+            # Loop through the selected files and log their paths. Append each path to page.session[selected_object_paths]
             for file in e.files:
                 logger.info(f"Selected file: {file.name} (Path: {file.path})")  
                 result_text.value += f"\n- {file.name}"  
+                page.session["selected_object_paths"].append(file.path)
                 page.update( )
             utils.show_message(page, f"{num_files} files selected from {directory}.")
             page.update( )
-            process_files(page, directory, e.files)  # Pass the list of files to the processing function
+            # process_files(page, directory, e.files)  # Pass the list of files to the processing function
         else:
             result_text.value = "Selection cancelled."
             utils.show_message(page, "File selection was cancelled.", is_error=True)
+            page.session.set
+
         page.update( )
 
-    # Function to process the selected files
-    def process_files(page, directory, files):
-        """
-        This is the processing function tasked with creating image derivatives.
-        It receives a list of selected files and the directory they are located in.
-        """
-        result_text.value = "Processing..."
-        page.update( )
-        
-        if files:
-            logger.info(f"Processing {len(files)} files from {directory}...")
-            for file in files:
-                logger.info(f"  - {file.name} (Path: {file.path})")
-            
-            done = 0.0
-
-            for file in files:
-                derivative = utils.create_derivative(page,
-                    mode=page.session.get("mode"),
-                    derivative_type='thumbnail',
-                    index=0,
-                    url=f"http://example.com/objs/{file.name}",
-                    local_storage_path=file.path,
-                    blob_service_client=None
-                )
-                done += 0.5
-                progress_bar.value = done / len(files)  # Update progress bar value
-                result_text.value += f"\n- {derivative}"  
-                page.update( )
-
-                derivative = utils.create_derivative(page,
-                    mode=page.session.get("mode"),
-                    derivative_type='small',
-                    index=0,
-                    url=f"http://example.com/objs/{file.name}",
-                    local_storage_path=file.path,
-                    blob_service_client=None
-                )
-                done += 0.5
-                progress_bar.value = done / len(files)  # Update progress bar value
-                result_text.value += f"\n- {derivative}"  
-                page.update( )
-
-            utils.show_message(page, f"Processed {len(files)} files from {directory}.")
-                
-        else:
-            logger.info("No files were selected for processing.")
-            utils.show_message(page, "No files were selected for processing.", is_error=True)
     
     # --- Main Page Setup ---
     
     # Set up the page title and theme
-    page.title = "Flet Create Image Derivatives"
+    page.title = "Flet Manage Digital Ingest"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.window.height = 1000
     page.spacing = 5
@@ -146,6 +110,7 @@ def main(page: ft.Page):
         content=ft.Markdown( ),
         bgcolor=ft.Colors.RED_600
     )
+
     
     # Build a light gray Flet container to hold Processing Mode options with a RadioGroup of controls for 
     # 'Alma' or 'CollectionBuilder' modes. 
@@ -195,6 +160,55 @@ def main(page: ft.Page):
         padding=10,
         border_radius=10
     )
+
+    # Create a main_menu_container o hold a horizontal list of button controls
+    main_menu_container = ft.Container(
+
+        content=ft.Row(
+            controls=[
+                ft.ElevatedButton(
+                    text="Home",
+                    icon=ft.Icons.HOME,
+                    on_click=lambda e: print("Home button clicked")
+                ),
+                ft.ElevatedButton(
+                    text="Profile",
+                    icon=ft.Icons.PERSON,
+                    on_click=lambda e: print("Profile button clicked")
+                ),
+                ft.ElevatedButton(
+                    text="Settings",
+                    icon=ft.Icons.SETTINGS,
+                    on_click=lambda e: print("Settings button clicked")
+                ),
+
+                # Define the close_button
+                close_button := ft.ElevatedButton(
+                    text="Close App",
+                    icon=ft.Icons.CLOSE,
+                    on_click=utils.close_app
+                ),
+
+                # Create an ElevatedButton 'Create Selected Derivatives' with the click event handler
+                create_derivatives_button := ft.ElevatedButton(
+                    text="Create Selected",
+                    icon=ft.Icons.ADD_OUTLINED,
+                    on_click=utils.process_files
+                ),
+
+            ],
+            # Align buttons horizontally in the center
+            alignment=ft.MainAxisAlignment.CENTER,
+            # Add spacing between the buttons
+            spacing=5,
+        ),
+        # Container styling
+        padding=ft.padding.all(10),
+        bgcolor=ft.Colors.with_opacity(1, ft.Colors.RED),
+        border_radius=ft.border_radius.all(10),
+        # width=500,
+    )
+
 
     # Build a light blue Flet container to hold Azure Blob Storage options with a RadioGroup of control values and labels 
     # read from 'azure_blob.json' containers. If 'collectionbuilder' is selected, add a light 
@@ -306,23 +320,23 @@ def main(page: ft.Page):
         # Add your file selection logic here.
         # For example, open a file picker or perform file-related operations.
         # The nested_controls_radio_group can be populated here.
-        page.update()
+        page.update( )
 
-    # def process_files(e):
-    #     """Action for the "Process Files" button."""
-    #     logger.info("Process Files button clicked.")
-    #     # Add your file processing logic here.
-    #     page.update()
         
     def files_radio_group_changed(e):
         """Handler for the radio group selection change."""
         selected_path = e.control.value
         logger.info(f"Selected option: {selected_path}")
 
+        # Check if the selection contains a leading tilde (~) and expand it to the full home directory path
+        if selected_path.startswith("~"):
+            selected_path = os.path.expanduser(selected_path)
+            logger.info(f"Expanded path: {selected_path}")
+
         # Check if the selected path is NOT a valid directory
         if not os.path.isdir(selected_path):
             # Populate the nested container with controls
-            nested_controls_radio_group.content.controls.clear()
+            nested_controls_radio_group.content.controls.clear( )
             nested_controls_radio_group.content.controls.append(
                 ft.Text(f"Contents of {selected_path}:", weight=ft.FontWeight.BOLD)
             )
@@ -371,46 +385,38 @@ def main(page: ft.Page):
                 file_selection_radios,
                 nested_container,  # Nested white container
         
-                # Add a text area to display the result of the file selection
-                ft.Row([result_text, progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
-                
-                # # Add a text area to display the results of file processing
-                # ft.Row([processing_results_text], alignment=ft.MainAxisAlignment.CENTER),
-
-
-                # ft.Row(
-                #     [
-                #         ft.ElevatedButton(text="Select Files", on_click=select_files),
-                #         ft.ElevatedButton(text="Process Files", on_click=process_files),
-                #     ],
-                # ),
             ],
             spacing=0
         ),
-        expand=True,
         padding=10,
         bgcolor=ft.Colors.PURPLE_100,
         border_radius=10,
     )
     
-    # close_app( ) callback function
-    def close_app(e):
-        page.window.close()
 
-    # Define the close_button
-    close_button = ft.ElevatedButton(
-        text="Close App",
-        icon=ft.Icons.CLOSE,
-        on_click=close_app
+    # Create a container to display process status/output.
+    # -----------------------------------------------------------
+    status_container = ft.Container(
+        content=ft.Column(
+            scroll=ft.ScrollMode.ADAPTIVE,
+            expand=True,
+            controls=[
+                ft.Text(
+                    "Status",
+                    size=18,
+                    weight=ft.FontWeight.BOLD,
+                    text_align=ft.TextAlign.CENTER,
+                ),
+                # Add a text area and progress_bar to display the result of operations
+                ft.Row([result_text, progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
+            ],
+            spacing=0,
+        ),
+        padding=10,
+        bgcolor=ft.Colors.GREEN_100,
+        border_radius=10,     
+
     )
-
-
-
-
-
-
-
-    
     
     
     
@@ -428,26 +434,14 @@ def main(page: ft.Page):
     page.add(
         ft.Column(
             controls=[
+                main_menu_container,
                 processing_mode_container, 
                 blob_main_container,
                 object_files_container,
-                close_button,
+                status_container,
             ],
             expand=True,
         ),
-        
-            
-        # processing_mode_container, 
-        # blob_main_container,
-        # object_files_container,
-        
-        # # Add a text area to display the result of the file selection
-        # ft.Row(
-        #     [
-        #         result_text
-        #     ],
-        #     alignment=ft.MainAxisAlignment.CENTER,
-        # )
     )
 
 

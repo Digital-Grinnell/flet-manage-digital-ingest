@@ -8,6 +8,71 @@ from subprocess import call
 import json
 
 
+# close_app( ) callback function
+# ----------------------------------------------------------------------
+def close_app(e):
+    e.page.window.close( )
+
+# Function to process the selected files
+# ----------------------------------------------------------------------
+def process_files(e):
+    """
+    This is the processing function tasked with creating image derivatives.
+    It receives a list of selected files and the directory they are located in.
+    """
+
+    page = e.page
+    logger = page.session.get("logger")
+    progress_bar = page.session.get("progress_bar")
+
+    page.result_text.value = "Processing..."
+    page.update( )
+
+    files = e.page.session.get("selected_object_paths")
+    directory = os.path.dirname(files[0]) if files else "N/A"
+        
+    if files:
+        logger.info(f"Processing {len(files)} files from {directory}...")
+        for file in files:
+            logger.info(f"  - {file.name} (Path: {file.path})")
+
+        done = 0.0
+
+        for file in files:
+            derivative = utils.create_derivative(page,
+                mode=page.session.get("mode"),
+                derivative_type='thumbnail',
+                index=0,
+                url=f"http://example.com/objs/{file.name}",
+                local_storage_path=file.path,
+                blob_service_client=None
+            )
+            done += 0.5
+            progress_bar.value = done / len(files)  # Update progress bar value
+            page.result_text.value += f"\n- {derivative}"  
+            page.update( )
+
+            derivative = utils.create_derivative(page,
+                mode=page.session.get("mode"),
+                derivative_type='small',
+                index=0,
+                url=f"http://example.com/objs/{file.name}",
+                local_storage_path=file.path,
+                blob_service_client=None
+            )
+            done += 0.5
+            progress_bar.value = done / len(files)  # Update progress bar value
+            page.result_text.value += f"\n- {derivative}"  
+            page.update( )
+
+        utils.show_message(page, f"Processed {len(files)} files from {directory}.")
+                
+    else:
+        logger.info("No files were selected for processing.")
+        utils.show_message(page, "No files were selected for processing.", is_error=True)
+
+
+
 # # Parse .json file to an array
 # # ---------------------------------------------------------------------
 # def parse_json_to_array(fname):

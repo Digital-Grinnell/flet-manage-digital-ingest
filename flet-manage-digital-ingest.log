@@ -21,3 +21,201 @@
 2025-09-12 03:54:33,895 - INFO - Selected processing mode: 'CollectionBuilder'
 2025-09-12 03:54:40,420 - INFO - Selected option: /Users/mcfatem/Downloads
 2025-09-12 03:54:58,459 - ERROR - File selection was cancelled.
+2025-09-12 04:07:51,438 - INFO - Initialized logging for __main__
+2025-09-12 04:31:34,682 - INFO - Initialized logging for __main__
+2025-09-12 04:31:53,790 - INFO - Initialized logging for __main__
+2025-09-12 04:31:58,601 - INFO - Initialized logging for __main__
+2025-09-12 04:32:16,770 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 04:32:20,190 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-12 04:34:08,624 - INFO - Selected processing mode: 'Alma'
+2025-09-12 04:34:09,726 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 04:34:25,265 - INFO - Initialized logging for __main__
+2025-09-12 04:34:31,281 - INFO - Selected option: ~/Downloads
+2025-09-12 04:39:19,478 - INFO - Initialized logging for __main__
+2025-09-12 04:39:22,269 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 04:39:26,093 - INFO - Selected option: ~/Downloads
+2025-09-12 04:39:26,093 - INFO - Expanded path: /Users/mark/Downloads
+2025-09-12 04:39:34,257 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 67, in pick_files_result
+    page.session["selected_object_paths"].clear( )
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-12 04:40:42,291 - INFO - Initialized logging for __main__
+2025-09-12 04:41:05,442 - INFO - Initialized logging for __main__
+2025-09-12 04:41:07,701 - INFO - Initialized logging for __main__
+2025-09-12 04:41:17,002 - INFO - Initialized logging for __main__
+2025-09-12 04:41:30,770 - INFO - Initialized logging for __main__
+2025-09-12 04:41:39,424 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 04:41:41,897 - INFO - Selected option: ~/Downloads
+2025-09-12 04:41:41,897 - INFO - Expanded path: /Users/mark/Downloads
+2025-09-12 04:41:47,488 - INFO - Selected file: UAS_how_to_label_Infographic.pdf (Path: /Users/mark/Documents/UAS_how_to_label_Infographic.pdf)
+2025-09-12 04:41:47,489 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-12 04:47:07,822 - INFO - Initialized logging for __main__
+2025-09-12 04:47:44,569 - INFO - Initialized logging for __main__
+2025-09-12 04:48:01,160 - INFO - Initialized logging for __main__
+2025-09-12 04:48:30,594 - INFO - Initialized logging for __main__
+2025-09-12 04:53:32,917 - INFO - Initialized logging for __main__
+2025-09-12 04:54:09,831 - INFO - Initialized logging for __main__
+2025-09-12 04:54:26,519 - INFO - Initialized logging for __main__
+2025-09-12 05:01:04,465 - INFO - Initialized logging for __main__
+2025-09-12 05:01:07,862 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 05:01:10,314 - INFO - Selected option: ~/Downloads
+2025-09-12 05:01:10,314 - INFO - Expanded path: /Users/mark/Downloads
+2025-09-12 05:01:15,344 - INFO - Selected file: PHSC00236256590.pdf (Path: /Users/mark/Documents/PHSC00236256590.pdf)
+2025-09-12 05:01:15,344 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-12 05:05:31,458 - INFO - Initialized logging for __main__
+2025-09-12 05:06:03,534 - INFO - Initialized logging for __main__
+2025-09-12 05:08:46,415 - INFO - Initialized logging for __main__
+2025-09-12 05:09:04,663 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 05:09:16,237 - INFO - Selected option: ~/Downloads
+2025-09-12 05:09:16,237 - INFO - Expanded path: /Users/mark/Downloads
+2025-09-12 05:09:20,850 - INFO - Selected file: PHSC00236256590.pdf (Path: /Users/mark/Documents/PHSC00236256590.pdf)
+2025-09-12 05:09:20,851 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-12 05:09:25,654 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("'Page' object has no attribute 'result_text'")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/utils.py", line 28, in process_files
+    page.result_text.value = "Processing..."
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'Page' object has no attribute 'result_text'
+2025-09-12 05:09:55,194 - INFO - Initialized logging for __main__
+2025-09-12 05:10:28,771 - INFO - Initialized logging for __main__
+2025-09-12 05:10:36,071 - INFO - Initialized logging for __main__
+2025-09-12 05:10:45,516 - INFO - Initialized logging for __main__
+2025-09-12 05:10:59,203 - INFO - Initialized logging for __main__
+2025-09-12 05:12:12,920 - INFO - Initialized logging for __main__
+2025-09-12 05:12:46,383 - INFO - Initialized logging for __main__
+2025-09-12 05:12:59,260 - INFO - Initialized logging for __main__
+2025-09-12 05:13:00,632 - INFO - Initialized logging for __main__
+2025-09-12 05:13:06,521 - INFO - Initialized logging for __main__
+2025-09-12 05:13:10,948 - INFO - Initialized logging for __main__
+2025-09-12 05:13:15,854 - INFO - Initialized logging for __main__
+2025-09-12 05:13:19,896 - INFO - Initialized logging for __main__
+2025-09-12 05:13:25,687 - INFO - Initialized logging for __main__
+2025-09-12 05:15:52,327 - INFO - Initialized logging for __main__
+2025-09-12 05:16:01,368 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 05:16:04,517 - INFO - Selected option: ~/Downloads
+2025-09-12 05:16:04,518 - INFO - Expanded path: /Users/mark/Downloads
+2025-09-12 05:16:10,725 - INFO - Selected file: PHSC00236256590.pdf (Path: /Users/mark/Documents/PHSC00236256590.pdf)
+2025-09-12 05:16:10,726 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-12 05:16:27,241 - ERROR - Future exception was never retrieved
+future: <Future finished exception=AttributeError("'Page' object has no attribute 'result_text'")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/utils.py", line 28, in process_files
+    page.result_text.value = "Processing..."
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'Page' object has no attribute 'result_text'
+2025-09-12 05:17:23,211 - INFO - Initialized logging for __main__
+2025-09-12 05:18:39,817 - INFO - Initialized logging for __main__
+2025-09-12 05:18:41,517 - INFO - Initialized logging for __main__
+2025-09-12 05:18:47,722 - INFO - Initialized logging for __main__
+2025-09-12 05:19:33,112 - INFO - Initialized logging for __main__
+2025-09-12 05:19:39,639 - INFO - Initialized logging for __main__
+2025-09-12 05:20:01,451 - INFO - Initialized logging for __main__
+2025-09-12 05:20:05,669 - INFO - Initialized logging for __main__
+2025-09-12 05:20:14,800 - INFO - Initialized logging for __main__
+2025-09-12 05:20:21,351 - INFO - Initialized logging for __main__
+2025-09-12 05:20:29,536 - INFO - Initialized logging for __main__
+2025-09-12 05:22:11,930 - INFO - Initialized logging for __main__
+2025-09-12 05:22:13,582 - INFO - Initialized logging for __main__
+2025-09-12 05:22:15,958 - INFO - Initialized logging for __main__
+2025-09-12 05:22:19,616 - INFO - Initialized logging for __main__
+2025-09-12 05:22:31,806 - INFO - Initialized logging for __main__
+2025-09-12 05:22:51,304 - INFO - Initialized logging for __main__
+2025-09-12 05:23:01,712 - INFO - Initialized logging for __main__
+2025-09-12 05:23:06,849 - INFO - Initialized logging for __main__
+2025-09-12 05:23:11,852 - INFO - Initialized logging for __main__
+2025-09-12 05:23:34,454 - INFO - Initialized logging for __main__
+2025-09-12 05:23:51,453 - INFO - Initialized logging for __main__
+2025-09-12 05:23:53,464 - INFO - Initialized logging for __main__
+2025-09-12 05:24:02,779 - INFO - Initialized logging for __main__
+2025-09-12 05:24:14,418 - INFO - Initialized logging for __main__
+2025-09-12 05:24:20,800 - INFO - Initialized logging for __main__
+2025-09-12 05:24:27,558 - INFO - Initialized logging for __main__
+2025-09-12 05:24:34,332 - INFO - Initialized logging for __main__
+2025-09-12 05:24:45,530 - INFO - Initialized logging for __main__
+2025-09-12 05:24:50,180 - INFO - Initialized logging for __main__
+2025-09-12 05:24:52,649 - INFO - Initialized logging for __main__
+2025-09-12 05:24:54,824 - INFO - Initialized logging for __main__
+2025-09-12 05:25:02,643 - INFO - Initialized logging for __main__
+2025-09-12 05:25:05,561 - INFO - Initialized logging for __main__
+2025-09-12 05:25:06,903 - INFO - Initialized logging for __main__
+2025-09-12 05:25:08,116 - INFO - Initialized logging for __main__
+2025-09-12 05:25:09,792 - INFO - Initialized logging for __main__
+2025-09-12 05:25:21,891 - INFO - Initialized logging for __main__
+2025-09-12 05:25:36,570 - INFO - Initialized logging for __main__
+2025-09-12 05:26:07,534 - INFO - Initialized logging for __main__
+2025-09-12 05:26:11,385 - INFO - Initialized logging for __main__
+2025-09-12 05:26:19,142 - INFO - Initialized logging for __main__
+2025-09-12 05:26:21,831 - INFO - Initialized logging for __main__
+2025-09-12 05:26:30,143 - INFO - Initialized logging for __main__
+2025-09-12 05:26:32,643 - INFO - Initialized logging for __main__
+2025-09-12 05:26:34,966 - INFO - Initialized logging for __main__
+2025-09-12 05:26:39,353 - INFO - Initialized logging for __main__
+2025-09-12 05:26:43,161 - INFO - Initialized logging for __main__
+2025-09-12 05:26:51,783 - INFO - Initialized logging for __main__
+2025-09-12 05:26:53,935 - INFO - Initialized logging for __main__
+2025-09-12 05:27:13,737 - INFO - Initialized logging for __main__
+2025-09-12 05:27:27,536 - INFO - Initialized logging for __main__
+2025-09-12 05:27:33,222 - INFO - Initialized logging for __main__
