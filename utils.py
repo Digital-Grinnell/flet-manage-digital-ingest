@@ -6,33 +6,31 @@ from subprocess import call
 # from azure.identity import DefaultAzureCredential
 # from azure.storage.blob import BlobServiceClient
 import json
-from pathvalidate import sanitize_filepath
 
 
+# # Parse .json file to an array
+# # ---------------------------------------------------------------------
+# def parse_json_to_array(fname):
 
-# Parse .json file to an array
-# ---------------------------------------------------------------------
-def parse_json_to_array(fname):
+#     try:
+#         with open(fname, 'r') as file:
+#             data_array = json.load(file)
+#             logger.info(type(data_array))
+#             logger.info(data_array)
+#     except FileNotFoundError:
+#         msg = f"Error: '{fname}' not found."
+#         logger.info(msg)
+#         # show_message(page, msg, True )
+#         return None
+#     except json.JSONDecodeError:
+#         msg = f"Error: Could not decode JSON from '{fname}'. Check file format."
+#         logger.info(msg)
+#         # show_message(page, msg, True)
+#         return None
 
-    try:
-        with open(fname, 'r') as file:
-            data_array = json.load(file)
-            print(type(data_array))
-            print(data_array)
-    except FileNotFoundError:
-        msg = f"Error: '{fname}' not found."
-        print(msg)
-        # show_message(page, msg, True )
-        return None
-    except json.JSONDecodeError:
-        msg = f"Error: Could not decode JSON from '{fname}'. Check file format."
-        print(msg)
-        # show_message(page, msg, True)
-        return None
-
-    msg = f"JSON successfully returned from `{fname}`"
-    # show_message(page, msg)
-    return data_array
+#     msg = f"JSON successfully returned from `{fname}`"
+#     # show_message(page, msg)
+#     return data_array
 
 
 # Connect to Azure Blob Storage
@@ -44,7 +42,8 @@ def parse_json_to_array(fname):
 # Visual Studio, the shell or application needs to be closed and reloaded to take the
 # environment variable into account.
 
-def connect_to_azure_blob( ):
+def connect_to_azure_blob(page):
+    logger = page.session.get("logger")
     try:
         connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
 
@@ -53,7 +52,7 @@ def connect_to_azure_blob( ):
         return blob_service_client
 
     except Exception as ex:
-        print(f"Error connecting to Azure Blob Storage: {ex}")
+        logger.error(f"Error connecting to Azure Blob Storage: {ex}")
         return None
 
 
@@ -231,6 +230,12 @@ def connect_to_azure_blob( ):
 # ------------------------------------------------------------
 def show_message(page, text, is_error=False):
     """Helper function to update and show the SnackBar."""
+    logger = page.session.get("logger")
+    if is_error:
+        logger.error(text)
+    else:
+        logger.info(text)
+        
     page.snack_bar.content.value = text
     page.snack_bar.bgcolor = ft.Colors.RED_600 if is_error else ft.Colors.GREEN_600
     page.open(page.snack_bar)
@@ -240,18 +245,17 @@ def show_message(page, text, is_error=False):
 # create_derivative(mode, derivative_type, index, url, local_storage_path, blob_service_client)
 # ------------------------------------------------------------
 def create_derivative(page, mode, derivative_type, index, url, local_storage_path, blob_service_client):
+    logger = page.session.get("logger")
 
     # Check the mode, if invalid report that there's nothing to do.
     if mode not in ['Alma','CollectionBuilder']:
         msg = f"Invalid mode '{mode}' specified so create_derivative( ) has nothing to do. {local_storage_path} derivative creation failed."
-        print(msg)
         show_message(page, msg, True)
         return msg
 
     # Check for spaces in the local_storage_path... NO spaces!
     if any(char.isspace( ) for char in local_storage_path):
         msg = f"File path '{local_storage_path}' contains one or more spaces!  Use `rename-file-paths-no-spaces.zsh to eradicate them before proceeding!"
-        print(msg)
         show_message(page, msg, True)
         return msg
 
@@ -327,8 +331,7 @@ def create_derivative(page, mode, derivative_type, index, url, local_storage_pat
         # If original is an image...
         if ext.lower( ) in ['.tiff', '.tif', '.jpg', '.jpeg', '.png']:
             generate_thumbnail(sanitized, derivative_path, options)
-            utils.show_message(page, f"Created a '{derivative_type}' derivative for '{sanitized}'")
-            utils.show_message(page, f"Derivative path is '{derivative_path}'")
+            utils.show_message(page, f"Created '{derivative_type}' derivative '{derivative_path}' for '{sanitized}'")
             return derivative_path
     
         # If original is a PDF...
@@ -338,8 +341,7 @@ def create_derivative(page, mode, derivative_type, index, url, local_storage_pat
             
             return_code = call(cmd, shell=True)
             if return_code == 0:
-                utils.show_message(page, f"Created a '{derivative_type}' derivative for '{sanitized}'")
-                utils.show_message(page, f"Derivative path is '{derivative_path}'")
+                utils.show_message(page, f"Created '{derivative_type}' derivative '{derivative_path}' for '{sanitized}'")
                 return derivative_path
             else:
                 txt = f"Sorry, we can't create a '{derivative_type}' derivative for '{sanitized}'"

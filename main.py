@@ -5,32 +5,36 @@ import flet as ft
 import os
 import utils
 import json
+import logging
 
 def main(page: ft.Page):
     
+    # Configure basic logging
+    logging.basicConfig(
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        level=logging.INFO,
+        filename='flet-manage-digital-ingest.log',
+        filemode='a')
+
+    # You can also specify the date format more precisely
+    # logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
+    #                     datefmt='%Y-%m-%d %H:%M:%S')
+
+    # Get a logger instance
+    logger = logging.getLogger(__name__)
+
+    # Log messages
+    logger.info(f"Initialized logging for {__name__}")
+    
     # JSON config files...
-    azure_blobs_JSON = "/Users/mcfatem/GitHub/Flet-Create-Image-Derivatives/azure_blobs.json"
-    cb_collections_JSON = "/Users/mcfatem/GitHub/Flet-Create-Image-Derivatives/cb_collections.json"
-    file_sources_JSON = "/Users/mcfatem/GitHub/Flet-Create-Image-Derivatives/file_sources.json"
+    azure_blobs_JSON = "./azure_blobs.json"
+    cb_collections_JSON = "./cb_collections.json"
+    file_sources_JSON = "./file_sources.json"
     
     # Other 'globals'
     page.session.set("mode", None)
+    page.session.set("logger", logger)
     
-    # Callback function for cg_azure_changed
-    def cg_azure_changed(e):
-        azure_selection = e.control.value()
-        print(f"Azure selection: {azure_selection}")
-        utils.show_message(page, f"Azure selection changed to: {azure_selection}")
-        page.update( )
-        
-    # Callback function for cg_collection_changed
-    def cg_collection_changed(e):    
-        cg_collection_selection = e.control.value()
-        print(f"CB collection selection: {cg_collection_selection}")
-        utils.show_message(page, f"CB collection selection changed to: {cg_collection_selection}")
-        page.update( )
-
-
     # Function to open the file picker dialog
     def open_file_picker(e):
         """
@@ -55,7 +59,7 @@ def main(page: ft.Page):
             result_text.value = f"{num_files} files selected from {directory}."
             # Loop through the selected files and print their names and paths
             for file in e.files:
-                print(f"Selected file: {file.name} (Path: {file.path})")  
+                logger.info(f"Selected file: {file.name} (Path: {file.path})")  
                 result_text.value += f"\n- {file.name}"  
                 page.update( )
             utils.show_message(page, f"{num_files} files selected from {directory}.")
@@ -76,9 +80,12 @@ def main(page: ft.Page):
         page.update( )
         
         if files:
-            print(f"Processing {len(files)} files from {directory}...")
+            logger.info(f"Processing {len(files)} files from {directory}...")
             for file in files:
-                print(f"  - {file.name} (Path: {file.path})")
+                logger.info(f"  - {file.name} (Path: {file.path})")
+            
+            done = 0.0
+
             for file in files:
                 derivative = utils.create_derivative(page,
                     mode=page.session.get("mode"),
@@ -88,6 +95,8 @@ def main(page: ft.Page):
                     local_storage_path=file.path,
                     blob_service_client=None
                 )
+                done += 0.5
+                progress_bar.value = done / len(files)  # Update progress bar value
                 result_text.value += f"\n- {derivative}"  
                 page.update( )
 
@@ -99,13 +108,15 @@ def main(page: ft.Page):
                     local_storage_path=file.path,
                     blob_service_client=None
                 )
+                done += 0.5
+                progress_bar.value = done / len(files)  # Update progress bar value
                 result_text.value += f"\n- {derivative}"  
                 page.update( )
 
             utils.show_message(page, f"Processed {len(files)} files from {directory}.")
                 
         else:
-            print("No files were selected for processing.")
+            logger.info("No files were selected for processing.")
             utils.show_message(page, "No files were selected for processing.", is_error=True)
     
     # --- Main Page Setup ---
@@ -114,14 +125,17 @@ def main(page: ft.Page):
     page.title = "Flet Create Image Derivatives"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.window.height = 1000
+    page.spacing = 5
 
     # Display text to show the result of the file selection
     result_text = ft.Markdown(value="No files selected.")
+    # Create a ProgressBar control (determinate)
+    progress_bar = ft.ProgressBar(width="90%", value=0.0)
 
     # # Does setting the working directory here help with file paths?  Yes, somewhat.
     # os.chdir(os.path.dirname("/Users/mcfatem/"))
-    # print(f"Current working directory: {os.getcwd()}")
-    # print(f"Script directory: {os.path.dirname(__file__)}")
+    # logger.info(f"Current working directory: {os.getcwd()}")
+    # logger.info(f"Script directory: {os.path.dirname(__file__)}")
 
     # Create an instance of the FilePicker control
     file_picker = ft.FilePicker(on_result=pick_files_result)
@@ -141,7 +155,6 @@ def main(page: ft.Page):
         mode = e.control.value
         page.session.set("mode", mode)
         msg = f"Selected processing mode: '{mode}'"
-        print(msg)
         utils.show_message(page, msg, False)
         
         # Add logic here to handle the selection, for example:
@@ -157,7 +170,8 @@ def main(page: ft.Page):
                 ft.Radio(value="Alma", label="Alma"),
                 ft.Radio(value="CollectionBuilder", label="CollectionBuilder"),
             ],
-            expand=True
+            expand=True,
+            spacing=0
         ),
         on_change=mode_radio_group_changed,
     )
@@ -174,13 +188,11 @@ def main(page: ft.Page):
                 ),
                 mode_options,
             ],
-            # Use spacing to separate the text and the radio buttons
-            spacing=10,
-            expand=True
+            expand=True,
         ),
         # Use a gray color for the background
         bgcolor=ft.Colors.GREY_300,
-        padding=20,
+        padding=10,
         border_radius=10
     )
 
@@ -229,7 +241,7 @@ def main(page: ft.Page):
     # The main light blue container
     blob_main_container = ft.Container(
         # width=400,
-        padding=20,
+        padding=10,
         bgcolor=ft.Colors.LIGHT_BLUE_100,
         border_radius=10,
         content=ft.Column(
@@ -240,18 +252,19 @@ def main(page: ft.Page):
                     weight=ft.FontWeight.BOLD,
                 ),
                 ft.RadioGroup(
-                    content=ft.Column(controls=load_blob_options(), expand=True),
+                    content=ft.Column(controls=load_blob_options(), expand=True, spacing=0),
                     on_change=blob_radio_group_changed,
                 ),
                 # The nested light green container, controlled by visibility
                 collection_options_container,
-            ]
-        ),
+            ],
+            spacing=0
+        )
     )
 
     # The inner light green container, populated with JSON data
     collection_options_container.content = ft.Container(
-        padding=15,
+        padding=10,
         bgcolor=ft.Colors.LIGHT_GREEN_200,
         border_radius=10,
         content=ft.Column(
@@ -265,7 +278,8 @@ def main(page: ft.Page):
                     content=ft.Column(controls=load_collection_options(), expand=True)
                 )
             ],
-            expand=True
+            expand=True,
+            spacing=0
         ),
     )
     
@@ -277,7 +291,7 @@ def main(page: ft.Page):
     # a title of "Process Files" and on_change action process_files.  
     
     # Controls for the nested container (initially empty)
-    nested_controls_radio_group = ft.RadioGroup(content=ft.Column())
+    nested_controls_radio_group = ft.RadioGroup(content=ft.Column(spacing=0))
     nested_container = ft.Container(
         content=nested_controls_radio_group,
         visible=False,
@@ -288,7 +302,7 @@ def main(page: ft.Page):
 
     def select_files(e):
         """Action for the "Select Files" button."""
-        print("Select Files button clicked.")
+        logger.info("Select Files button clicked.")
         # Add your file selection logic here.
         # For example, open a file picker or perform file-related operations.
         # The nested_controls_radio_group can be populated here.
@@ -296,14 +310,14 @@ def main(page: ft.Page):
 
     # def process_files(e):
     #     """Action for the "Process Files" button."""
-    #     print("Process Files button clicked.")
+    #     logger.info("Process Files button clicked.")
     #     # Add your file processing logic here.
     #     page.update()
         
     def files_radio_group_changed(e):
         """Handler for the radio group selection change."""
         selected_path = e.control.value
-        print(f"Selected option: {selected_path}")
+        logger.info(f"Selected option: {selected_path}")
 
         # Check if the selected path is NOT a valid directory
         if not os.path.isdir(selected_path):
@@ -338,7 +352,8 @@ def main(page: ft.Page):
     file_selection_radios = ft.RadioGroup(
         content=ft.Column(
             [ft.Radio(value=source, label=source) for source in file_sources],
-            expand=True
+            expand=True,
+            spacing=0
         ),
         on_change=files_radio_group_changed,
     )
@@ -357,7 +372,7 @@ def main(page: ft.Page):
                 nested_container,  # Nested white container
         
                 # Add a text area to display the result of the file selection
-                ft.Row([result_text], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
+                ft.Row([result_text, progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
                 
                 # # Add a text area to display the results of file processing
                 # ft.Row([processing_results_text], alignment=ft.MainAxisAlignment.CENTER),
@@ -370,9 +385,10 @@ def main(page: ft.Page):
                 #     ],
                 # ),
             ],
+            spacing=0
         ),
         expand=True,
-        padding=20,
+        padding=10,
         bgcolor=ft.Colors.PURPLE_100,
         border_radius=10,
     )
@@ -419,6 +435,7 @@ def main(page: ft.Page):
             ],
             expand=True,
         ),
+        
             
         # processing_mode_container, 
         # blob_main_container,

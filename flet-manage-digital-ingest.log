@@ -1,0 +1,23 @@
+2025-09-11 16:42:21,148 - INFO - Initialized logging for __main__
+2025-09-11 16:42:23,794 - INFO - Initialized logging for __main__
+2025-09-11 16:42:28,833 - INFO - Initialized logging for __main__
+2025-09-11 16:42:42,050 - INFO - Initialized logging for __main__
+2025-09-11 16:42:52,973 - INFO - Initialized logging for __main__
+2025-09-11 16:43:00,185 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-11 16:43:00,185 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-11 16:43:32,978 - INFO - Initialized logging for __main__
+2025-09-11 16:44:42,179 - INFO - Initialized logging for __main__
+2025-09-11 16:47:16,352 - INFO - Initialized logging for __main__
+2025-09-11 16:47:20,962 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-11 16:47:29,919 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-11 16:47:36,836 - INFO - Selected file: grinnell_10744_OBJ.tiff (Path: /Users/mcfatem/Downloads/grinnell_10744_OBJ.tiff)
+2025-09-11 16:47:36,838 - INFO - 1 files selected from /Users/mcfatem/Downloads.
+2025-09-11 16:47:36,840 - INFO - Processing 1 files from /Users/mcfatem/Downloads...
+2025-09-11 16:47:36,840 - INFO -   - grinnell_10744_OBJ.tiff (Path: /Users/mcfatem/Downloads/grinnell_10744_OBJ.tiff)
+2025-09-11 16:47:37,241 - INFO - Created 'thumbnail' derivative '/Users/mcfatem/Downloads/grinnell_10744_OBJ_TN.jpg' for '/Users/mcfatem/Downloads/grinnell_10744_OBJ.tiff'
+2025-09-11 16:47:37,356 - INFO - Created 'small' derivative '/Users/mcfatem/Downloads/grinnell_10744_OBJ_SMALL.jpg' for '/Users/mcfatem/Downloads/grinnell_10744_OBJ.tiff'
+2025-09-11 16:47:37,356 - INFO - Processed 1 files from /Users/mcfatem/Downloads.
+2025-09-12 03:54:18,706 - INFO - Initialized logging for __main__
+2025-09-12 03:54:33,895 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-12 03:54:40,420 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-12 03:54:58,459 - ERROR - File selection was cancelled.
