@@ -283,6 +283,8 @@ def main(page: ft.Page):
         ),
     )
     
+    # Digital Object File Seletion
+    # =================================================================================================
     
     # Build a purple Flet container to hold Digital Object File Selection options with a RadioGroup of 
     # file_selection controls read from file_sources.json. If the selected option is a valid file path add 
@@ -300,13 +302,13 @@ def main(page: ft.Page):
         border_radius=10,
     )
 
-    def select_files(e):
-        """Action for the "Select Files" button."""
-        logger.info("Select Files button clicked.")
-        # Add your file selection logic here.
-        # For example, open a file picker or perform file-related operations.
-        # The nested_controls_radio_group can be populated here.
-        page.update()
+    # def select_files(e):
+    #     """Action for the "Select Files" button."""
+    #     logger.info("Select Files button clicked.")
+    #     # Add your file selection logic here.
+    #     # For example, open a file picker or perform file-related operations.
+    #     # The nested_controls_radio_group can be populated here.
+    #     page.update( )
 
     # def process_files(e):
     #     """Action for the "Process Files" button."""
@@ -319,24 +321,39 @@ def main(page: ft.Page):
         selected_path = e.control.value
         logger.info(f"Selected option: {selected_path}")
 
-        # Check if the selected path is NOT a valid directory
-        if not os.path.isdir(selected_path):
-            # Populate the nested container with controls
-            nested_controls_radio_group.content.controls.clear()
-            nested_controls_radio_group.content.controls.append(
-                ft.Text(f"Contents of {selected_path}:", weight=ft.FontWeight.BOLD)
-            )
-            # Example: add placeholder radio buttons for further selection
-            nested_controls_radio_group.content.controls.extend([
-                ft.Radio(value="option1", label="Option 1 from directory"),
-                ft.Radio(value="option2", label="Option 2 from directory"),
-            ])
-            nested_container.visible = True
-        else:
-            # Hide the nested container if the path is valid, and call open_file_picker( )
-            nested_container.visible = False
-            open_file_picker(e)
-        
+        # Clear any previously nested controls no matter what the new selection is
+        nested_controls_radio_group.content.controls.clear( )
+        nested_container.visible = False
+        page.update( )
+
+        # Check if the selected path contains a slash indicating it IS a path
+        if '/' in selected_path:
+            # Check if the selected path is NOT a valid directory
+            if not os.path.isdir(selected_path):
+                msg = f"Selected option '{selected_path}' does not appear to be a valid path. Is it mapped to this device?"
+                logger.error(msg)
+                utils.show_message(page, msg, True)
+            else:  # Hide the nested container if the path is valid, and call open_file_picker( )
+                nested_container.visible = False
+                open_file_picker(e)
+
+        else:  # Choosing the fuzzy search option, reading a list of filenames from a worksheet
+            msg = f"Sorry, this option has not been implemented.  Check back later, please."
+            logger.error(msg)
+            utils.show_message(page, msg, True)
+
+            # # Populate the nested container with controls
+            # nested_controls_radio_group.content.controls.clear( )
+            # nested_controls_radio_group.content.controls.append(
+            #     ft.Text(f"Contents of {selected_path}:", weight=ft.FontWeight.BOLD)
+            # )
+            # # Example: add placeholder radio buttons for further selection
+            # nested_controls_radio_group.content.controls.extend([
+            #     ft.Radio(value="option1", label="Option 1 from directory"),
+            #     ft.Radio(value="option2", label="Option 2 from directory"),
+            # ])
+            # nested_container.visible = True
+            
         page.update( )
 
     # Read file sources from JSON

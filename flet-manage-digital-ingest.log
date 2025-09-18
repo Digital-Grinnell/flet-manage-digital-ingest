@@ -21,3 +21,143 @@
 2025-09-12 03:54:33,895 - INFO - Selected processing mode: 'CollectionBuilder'
 2025-09-12 03:54:40,420 - INFO - Selected option: /Users/mcfatem/Downloads
 2025-09-12 03:54:58,459 - ERROR - File selection was cancelled.
+2025-09-18 10:52:24,474 - INFO - Initialized logging for __main__
+2025-09-18 10:52:50,282 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-18 10:53:03,964 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 10:53:22,907 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 10:53:30,115 - ERROR - File selection was cancelled.
+2025-09-18 10:53:36,558 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 10:53:42,255 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 10:53:49,110 - ERROR - File selection was cancelled.
+2025-09-18 10:57:03,283 - INFO - Initialized logging for __main__
+2025-09-18 10:57:27,330 - INFO - Initialized logging for __main__
+2025-09-18 10:57:28,763 - INFO - Initialized logging for __main__
+2025-09-18 10:57:30,156 - INFO - Initialized logging for __main__
+2025-09-18 10:57:38,176 - INFO - Initialized logging for __main__
+2025-09-18 10:57:42,769 - INFO - Initialized logging for __main__
+2025-09-18 10:57:49,336 - INFO - Initialized logging for __main__
+2025-09-18 10:57:53,581 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 10:57:55,984 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 10:57:58,565 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 10:58:39,803 - INFO - Initialized logging for __main__
+2025-09-18 10:58:43,933 - INFO - Initialized logging for __main__
+2025-09-18 10:58:45,078 - INFO - Initialized logging for __main__
+2025-09-18 10:58:47,197 - INFO - Initialized logging for __main__
+2025-09-18 10:58:50,506 - ERROR - File selection was cancelled.
+2025-09-18 10:58:54,297 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 10:58:56,236 - ERROR - File selection was cancelled.
+2025-09-18 10:58:57,659 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 10:59:00,087 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 10:59:44,217 - INFO - Initialized logging for __main__
+2025-09-18 11:00:27,934 - ERROR - File selection was cancelled.
+2025-09-18 11:01:33,389 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:01:36,421 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 11:01:45,015 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-18 11:01:50,580 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:01:54,558 - ERROR - File selection was cancelled.
+2025-09-18 11:01:56,296 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:03:12,970 - INFO - Initialized logging for __main__
+2025-09-18 11:03:20,729 - INFO - Initialized logging for __main__
+2025-09-18 11:03:21,571 - INFO - Initialized logging for __main__
+2025-09-18 11:03:31,419 - INFO - Initialized logging for __main__
+2025-09-18 11:03:58,213 - INFO - Initialized logging for __main__
+2025-09-18 11:04:00,283 - INFO - Initialized logging for __main__
+2025-09-18 11:04:45,940 - INFO - Initialized logging for __main__
+2025-09-18 11:04:47,093 - INFO - Initialized logging for __main__
+2025-09-18 11:04:49,761 - INFO - Initialized logging for __main__
+2025-09-18 11:04:57,165 - INFO - Initialized logging for __main__
+2025-09-18 11:04:59,707 - INFO - Initialized logging for __main__
+2025-09-18 11:05:07,944 - INFO - Initialized logging for __main__
+2025-09-18 11:05:09,921 - INFO - Initialized logging for __main__
+2025-09-18 11:05:14,734 - INFO - Initialized logging for __main__
+2025-09-18 11:05:16,826 - INFO - Initialized logging for __main__
+2025-09-18 11:05:18,172 - INFO - Initialized logging for __main__
+2025-09-18 11:06:22,310 - INFO - Initialized logging for __main__
+2025-09-18 11:06:24,322 - INFO - Initialized logging for __main__
+2025-09-18 11:06:32,317 - INFO - Initialized logging for __main__
+2025-09-18 11:06:33,551 - INFO - Initialized logging for __main__
+2025-09-18 11:06:40,123 - INFO - Initialized logging for __main__
+2025-09-18 11:06:48,170 - INFO - Initialized logging for __main__
+2025-09-18 11:06:49,388 - INFO - Initialized logging for __main__
+2025-09-18 11:07:32,098 - INFO - Initialized logging for __main__
+2025-09-18 11:07:40,990 - INFO - Initialized logging for __main__
+2025-09-18 11:07:52,823 - INFO - Initialized logging for __main__
+2025-09-18 11:08:15,451 - INFO - Initialized logging for __main__
+2025-09-18 11:08:26,836 - INFO - Initialized logging for __main__
+2025-09-18 11:09:56,648 - INFO - Initialized logging for __main__
+2025-09-18 11:11:03,946 - INFO - Initialized logging for __main__
+2025-09-18 11:11:08,496 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 11:11:10,355 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:11:11,705 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:11:20,104 - INFO - Selected file: 2021 EFR Service Summary.pdf (Path: /Users/mcfatem/Downloads/2021 EFR Service Summary.pdf)
+2025-09-18 11:11:20,106 - INFO - 1 files selected from /Users/mcfatem/Downloads.
+2025-09-18 11:11:20,108 - INFO - Processing 1 files from /Users/mcfatem/Downloads...
+2025-09-18 11:11:20,108 - INFO -   - 2021 EFR Service Summary.pdf (Path: /Users/mcfatem/Downloads/2021 EFR Service Summary.pdf)
+2025-09-18 11:11:20,109 - ERROR - Invalid mode 'None' specified so create_derivative( ) has nothing to do. /Users/mcfatem/Downloads/2021 EFR Service Summary.pdf derivative creation failed.
+2025-09-18 11:11:20,110 - ERROR - Invalid mode 'None' specified so create_derivative( ) has nothing to do. /Users/mcfatem/Downloads/2021 EFR Service Summary.pdf derivative creation failed.
+2025-09-18 11:11:20,112 - INFO - Processed 1 files from /Users/mcfatem/Downloads.
+2025-09-18 11:12:17,236 - INFO - Initialized logging for __main__
+2025-09-18 11:12:37,024 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:12:37,026 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path.
+2025-09-18 11:19:17,246 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:19:19,569 - ERROR - File selection was cancelled.
+2025-09-18 11:19:21,791 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:19:21,793 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path.
+2025-09-18 11:22:19,523 - INFO - Initialized logging for __main__
+2025-09-18 11:22:27,616 - INFO - Initialized logging for __main__
+2025-09-18 11:22:29,229 - INFO - Initialized logging for __main__
+2025-09-18 11:22:30,511 - INFO - Initialized logging for __main__
+2025-09-18 11:22:35,000 - INFO - Initialized logging for __main__
+2025-09-18 11:22:36,132 - INFO - Initialized logging for __main__
+2025-09-18 11:22:38,963 - INFO - Initialized logging for __main__
+2025-09-18 11:22:44,066 - INFO - Initialized logging for __main__
+2025-09-18 11:22:47,636 - INFO - Initialized logging for __main__
+2025-09-18 11:22:52,933 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:22:52,934 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path.
+2025-09-18 11:22:52,934 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path.
+2025-09-18 11:23:14,993 - INFO - Initialized logging for __main__
+2025-09-18 11:23:17,384 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:23:17,385 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:23:17,385 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:23:22,622 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:23:24,696 - ERROR - File selection was cancelled.
+2025-09-18 11:23:26,371 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:23:32,403 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:23:32,405 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:23:32,405 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:23:35,821 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:23:37,289 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:23:40,513 - ERROR - File selection was cancelled.
+2025-09-18 11:23:53,941 - INFO - Initialized logging for __main__
+2025-09-18 11:23:57,561 - INFO - Initialized logging for __main__
+2025-09-18 11:23:59,878 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:24:02,536 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:24:07,452 - ERROR - File selection was cancelled.
+2025-09-18 11:24:33,722 - INFO - Initialized logging for __main__
+2025-09-18 11:28:21,992 - INFO - Initialized logging for __main__
+2025-09-18 11:28:28,392 - INFO - Initialized logging for __main__
+2025-09-18 11:28:35,539 - INFO - Initialized logging for __main__
+2025-09-18 11:28:48,276 - INFO - Initialized logging for __main__
+2025-09-18 11:28:53,982 - INFO - Initialized logging for __main__
+2025-09-18 11:29:03,025 - INFO - Initialized logging for __main__
+2025-09-18 11:29:13,081 - INFO - Initialized logging for __main__
+2025-09-18 11:29:15,977 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 11:29:15,977 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:29:15,977 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:29:22,098 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:29:22,100 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:29:22,100 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:29:50,700 - INFO - Initialized logging for __main__
+2025-09-18 11:30:37,810 - INFO - Initialized logging for __main__
+2025-09-18 11:30:44,932 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-18 11:30:49,265 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-18 11:30:49,268 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:30:49,268 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:30:52,397 - INFO - Selected option: /Users/mcfatem/Downloads
+2025-09-18 11:30:55,311 - ERROR - File selection was cancelled.
+2025-09-18 11:31:04,968 - INFO - Selected option: /Volumes/MediaDB
+2025-09-18 11:31:04,970 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:31:04,970 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-18 11:31:09,003 - INFO - Selected option: from a CSV File column with 'fuzzy' search
+2025-09-18 11:31:09,003 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-18 11:31:09,004 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
