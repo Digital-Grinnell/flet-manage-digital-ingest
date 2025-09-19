@@ -1,7 +1,6 @@
 import flet as ft
 import utils
 
-
 # Class constructor
 # ---------------------------------------------------------------
 class AzureSelectionContainer(ft.Container):

@@ -20,7 +20,10 @@ class StatusContainer(ft.Container):
                         text_align=ft.TextAlign.CENTER,
                     ),
                     # Add rows of text area and progress_bar to display the result of operations
-                    ft.Row([self.result_text, self.progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
+                    ft.Row([self.result_text, self.progress_bar], 
+                           wrap=True, 
+                           # alignment=ft.MainAxisAlignment.LEFT
+                           ),
                 ],  
                 scroll=ft.ScrollMode.ADAPTIVE,
                 expand=True,

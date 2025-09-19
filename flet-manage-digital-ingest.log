@@ -322,3 +322,101 @@ TypeError: 'SessionStorage' object is not subscriptable
 2025-09-19 15:29:57,114 - INFO - Initialized logging for __main__
 2025-09-19 15:30:22,817 - INFO - Initialized logging for __main__
 2025-09-19 15:31:00,381 - INFO - Initialized logging for __main__
+2025-09-19 15:42:35,718 - INFO - Initialized logging for __main__
+2025-09-19 15:42:38,186 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:43:49,474 - INFO - Initialized logging for __main__
+2025-09-19 15:43:51,775 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:46:43,447 - INFO - Initialized logging for __main__
+2025-09-19 15:46:45,795 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:47:26,936 - INFO - Initialized logging for __main__
+2025-09-19 15:47:29,209 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:47:32,571 - INFO - Selected option: ~/Downloads
+2025-09-19 15:47:32,571 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:47:32,571 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:49:33,766 - INFO - Initialized logging for __main__
+2025-09-19 15:50:33,292 - INFO - Initialized logging for __main__
+2025-09-19 15:50:35,690 - INFO - Initialized logging for __main__
+2025-09-19 15:50:38,006 - INFO - Initialized logging for __main__
+2025-09-19 15:50:43,076 - INFO - Initialized logging for __main__
+2025-09-19 15:50:45,897 - INFO - Initialized logging for __main__
+2025-09-19 15:51:37,591 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:51:39,745 - INFO - Selected option: ~/Downloads
+2025-09-19 15:51:39,745 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:51:39,745 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:52:02,058 - INFO - Initialized logging for __main__
+2025-09-19 15:55:27,518 - INFO - Initialized logging for __main__
+2025-09-19 15:55:29,279 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:55:33,411 - INFO - Selected option: ~/Downloads
+2025-09-19 15:55:33,411 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:55:33,411 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 15:55:33,413 - INFO - Opening file picker dialog...
+2025-09-19 15:56:18,601 - INFO - Initialized logging for __main__
+2025-09-19 15:56:19,699 - INFO - Initialized logging for __main__
+2025-09-19 16:01:10,813 - INFO - Initialized logging for __main__
+2025-09-19 16:01:12,461 - INFO - Initialized logging for __main__
+2025-09-19 16:01:14,281 - INFO - Initialized logging for __main__
+2025-09-19 16:01:16,053 - INFO - Initialized logging for __main__
+2025-09-19 16:01:18,361 - INFO - Initialized logging for __main__
+2025-09-19 16:01:19,260 - INFO - Initialized logging for __main__
+2025-09-19 16:01:25,615 - INFO - Initialized logging for __main__
+2025-09-19 16:01:27,459 - INFO - Initialized logging for __main__
+2025-09-19 16:01:36,545 - INFO - Initialized logging for __main__
+2025-09-19 16:01:40,978 - INFO - Initialized logging for __main__
+2025-09-19 16:01:48,065 - INFO - Initialized logging for __main__
+2025-09-19 16:01:50,089 - INFO - Initialized logging for __main__
+2025-09-19 16:01:55,897 - INFO - Initialized logging for __main__
+2025-09-19 16:02:05,819 - INFO - Initialized logging for __main__
+2025-09-19 16:02:16,298 - INFO - Initialized logging for __main__
+2025-09-19 16:02:25,559 - INFO - Initialized logging for __main__
+2025-09-19 16:02:32,206 - INFO - Initialized logging for __main__
+2025-09-19 16:04:32,235 - INFO - Initialized logging for __main__
+2025-09-19 16:04:34,108 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 16:04:37,264 - INFO - Selected option: ~/Downloads
+2025-09-19 16:04:37,264 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:04:37,264 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:04:37,266 - INFO - Opening file picker dialog...
+2025-09-19 16:05:29,764 - INFO - Initialized logging for __main__
+2025-09-19 16:05:32,005 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 16:05:34,491 - INFO - Selected option: ~/Downloads
+2025-09-19 16:05:34,492 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:05:34,492 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:05:34,494 - INFO - Opening file picker dialog...
+2025-09-19 16:05:55,901 - ERROR - File selection was cancelled.
+2025-09-19 16:06:03,717 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-19 16:06:03,717 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-19 16:06:03,718 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-19 16:06:07,047 - INFO - Selected option: ~/Downloads
+2025-09-19 16:06:07,047 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:06:07,047 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:06:07,048 - INFO - Opening file picker dialog...
+2025-09-19 16:07:55,268 - ERROR - File selection was cancelled.
+2025-09-19 16:07:58,101 - INFO - Selected option: /Volumes/MediaDB
+2025-09-19 16:07:58,102 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-19 16:07:58,102 - ERROR - Selected option '/Volumes/MediaDB' does not appear to be a valid path. Is it mapped to this device?
+2025-09-19 16:08:02,389 - INFO - Selected option: ~/Downloads
+2025-09-19 16:08:02,389 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:08:02,389 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:08:02,391 - INFO - Opening file picker dialog...
+2025-09-19 16:08:16,519 - INFO - Selected file: Screenshot 2025-09-19 at 07.23.36.png (Path: /Users/mark/Downloads/Screenshot 2025-09-19 at 07.23.36.png)
+2025-09-19 16:08:16,520 - INFO - Selected file: Grinnell-College-Paystub.png (Path: /Users/mark/Downloads/Grinnell-College-Paystub.png)
+2025-09-19 16:08:16,522 - INFO - 2 files selected from /Users/mark/Downloads.
+2025-09-19 16:09:51,069 - INFO - Selected option: from a Google Sheet column with 'fuzzy' search
+2025-09-19 16:09:51,070 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-19 16:09:51,070 - ERROR - Sorry, this option has not been implemented.  Check back later, please.
+2025-09-19 16:09:52,487 - INFO - Selected option: ~/Downloads
+2025-09-19 16:09:52,487 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:09:52,487 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:09:52,489 - INFO - Opening file picker dialog...
+2025-09-19 16:09:58,868 - INFO - Selected file: Screenshot 2025-09-19 at 07.23.36.png (Path: /Users/mark/Downloads/Screenshot 2025-09-19 at 07.23.36.png)
+2025-09-19 16:09:58,870 - INFO - Selected file: Grinnell-College-Paystub.png (Path: /Users/mark/Downloads/Grinnell-College-Paystub.png)
+2025-09-19 16:09:58,872 - INFO - 2 files selected from /Users/mark/Downloads.
+2025-09-19 16:10:50,458 - INFO - Initialized logging for __main__
+2025-09-19 16:12:08,039 - INFO - Initialized logging for __main__
+2025-09-19 16:12:10,244 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 16:12:13,101 - INFO - Selected option: ~/Downloads
+2025-09-19 16:12:13,101 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:12:13,101 - INFO - Selected option '/Users/mark/Downloads' yields a valid path. Launching the file picker.
+2025-09-19 16:12:13,103 - INFO - Opening file picker dialog...
+2025-09-19 16:12:20,399 - INFO - Selected file: Screenshot 2025-09-19 at 07.23.36.png (Path: /Users/mark/Downloads/Screenshot 2025-09-19 at 07.23.36.png)
+2025-09-19 16:12:20,401 - INFO - Selected file: Grinnell-College-Paystub.png (Path: /Users/mark/Downloads/Grinnell-College-Paystub.png)
+2025-09-19 16:12:20,403 - INFO - 2 files selected from /Users/mark/Downloads.
