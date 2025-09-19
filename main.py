@@ -161,7 +161,7 @@ def main(page: ft.Page):
         border_radius=10
     )
 
-    # Create a main_menu_container o hold a horizontal list of button controls
+    # Create a main_menu_container to hold a horizontal list of button controls
     main_menu_container = ft.Container(
 
         content=ft.Row(
@@ -335,11 +335,19 @@ def main(page: ft.Page):
         nested_container.visible = False
         page.update( )
 
+        expanded_path = None
+
         # Check if the selected path contains a slash indicating it IS a path
         if '/' in selected_path:
+            # If the selected_path begins with a tilde, translate that into the user's home directory
+            if selected_path.startswith("~"):
+                expanded_path = os.path.expanduser(selected_path)
+            else:
+                expanded_path = selected_path
+            
             # Check if the selected path is NOT a valid directory
-            if not os.path.isdir(selected_path):
-                msg = f"Selected option '{selected_path}' does not appear to be a valid path. Is it mapped to this device?"
+            if not os.path.isdir(expanded_path):
+                msg = f"Selected option '{expanded_path}' does not appear to be a valid path. Is it mapped to this device?"
                 logger.error(msg)
                 utils.show_message(page, msg, True)
             else:  # Hide the nested container if the path is valid, and call open_file_picker( )
