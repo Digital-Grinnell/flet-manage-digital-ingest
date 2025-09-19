@@ -1,8 +1,5 @@
-{
-  "options": 
-    [
-      "NONE",
-      "dgobjects",
-      "collectionbuilder"
-    ]
-}
+[
+    "NONE",
+    "dgobjects",
+    "collectionbuilder"
+]

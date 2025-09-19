@@ -13,6 +13,7 @@ import json
 def close_app(e):
     e.page.window.close( )
 
+
 # Function to process the selected files
 # ----------------------------------------------------------------------
 def process_files(e):
@@ -72,30 +73,40 @@ def process_files(e):
         utils.show_message(page, "No files were selected for processing.", is_error=True)
 
 
+# Parse .json file to an ft.Column of Radio controls as "content"
+# ---------------------------------------------------------------------
+def parse_json_to_radio_content(fname):
+    data_array = None
 
-# # Parse .json file to an array
-# # ---------------------------------------------------------------------
-# def parse_json_to_array(fname):
+    try:
+        with open(fname, 'r') as file:
+            data_array = json.load(file)
+    except FileNotFoundError:
+        msg = f"Error: '{fname}' not found."
+        return msg
+    except json.JSONDecodeError:
+        msg = f"Error: Could not decode JSON from '{fname}'. Check file format."
+        return msg
+    
+    content=ft.Column(
+        [ft.Radio(value=source, label=source) for source in data_array],
+        # expand=True,
+        # spacing=0
+    )
 
-#     try:
-#         with open(fname, 'r') as file:
-#             data_array = json.load(file)
-#             logger.info(type(data_array))
-#             logger.info(data_array)
-#     except FileNotFoundError:
-#         msg = f"Error: '{fname}' not found."
-#         logger.info(msg)
-#         # show_message(page, msg, True )
-#         return None
-#     except json.JSONDecodeError:
-#         msg = f"Error: Could not decode JSON from '{fname}'. Check file format."
-#         logger.info(msg)
-#         # show_message(page, msg, True)
-#         return None
+    return content
 
-#     msg = f"JSON successfully returned from `{fname}`"
-#     # show_message(page, msg)
-#     return data_array
+# Load options from a JSON file and return as a list of Radio controls
+# ----------------------------------------------------------------------
+def load_radio_options_from_json(fname):
+    content = parse_json_to_radio_content(fname)
+
+    # Check if content is an ft.Column instance 
+    if isinstance(content, ft.Column):
+        return content.controls
+    else:  # If content is not an ft.Column, print error and return error message
+        print(f"Error: {content}")
+        return [ft.Text(f"Error loading options from {fname}.")]
 
 
 # Connect to Azure Blob Storage

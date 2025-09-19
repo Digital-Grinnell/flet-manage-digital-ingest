@@ -5,36 +5,28 @@ import flet as ft
 import os
 import utils
 import json
-import logging
+import my_logger
+from status import StatusContainer
+from mode_selection import ModeSelectionContainer
+from main_menu import MainMenuContainer
+from azure_selection import AzureSelectionContainer
+from object_selection import ObjectSelectionContainer
 
+
+# Main function
+# ---------------------------------------------------------------
 def main(page: ft.Page):
-    
-    # Configure basic logging
-    logging.basicConfig(
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        level=logging.INFO,
-        filename='flet-manage-digital-ingest.log',
-        filemode='a')
 
-    # You can also specify the date format more precisely
-    # logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-    #                     datefmt='%Y-%m-%d %H:%M:%S')
-
-    # Get a logger instance
-    logger = logging.getLogger(__name__)
+    logger = my_logger.init_logger( )
 
     # Log messages
     logger.info(f"Initialized logging for {__name__}")
-    
-    # JSON config files...
-    azure_blobs_JSON = "./azure_blobs.json"
-    cb_collections_JSON = "./cb_collections.json"
-    file_sources_JSON = "./file_sources.json"
-    
+
     # Other 'globals'
     page.session.set("mode", None)
     page.session.set("logger", logger)
-    page.session.set("selected_object_paths", [])  # set up an empty list to hold selected files/paths
+    if not page.session.contains_key("selected_object_paths"):
+        page.session.set("selected_object_paths", [ ])  # set up an empty list to hold selected files/paths
     
     # Function to open the file picker dialog
     # This is called when a valid directory option is selected in the file selection RadioGroup
@@ -64,24 +56,25 @@ def main(page: ft.Page):
             result_text.value = f"{num_files} files selected from {directory}."
             
             # Clear the previous selection
-            page.session.set("selected_object_paths", [])
+            page.session.set("selected_object_paths", [ ])
+            objects = page.session.get("selected_object_paths")
             
             # Loop through the selected files and log their paths. Append each path to page.session[selected_object_paths]
             for file in e.files:
                 logger.info(f"Selected file: {file.name} (Path: {file.path})")  
-                result_text.value += f"\n- {file.name}"  
-                page.session["selected_object_paths"].append(file.path)
+                status_container.result_text.value += f"\n- {file.name}"  
+                objects.append(file.path)
                 page.update( )
             utils.show_message(page, f"{num_files} files selected from {directory}.")
+            page.session.set("selected_object_paths", objects)
             page.update( )
             # process_files(page, directory, e.files)  # Pass the list of files to the processing function
         else:
-            result_text.value = "Selection cancelled."
+            status_container.result_text.value = "Selection cancelled."
             utils.show_message(page, "File selection was cancelled.", is_error=True)
             page.session.set
 
         page.update( )
-
     
     # --- Main Page Setup ---
     
@@ -91,19 +84,10 @@ def main(page: ft.Page):
     page.window.height = 1000
     page.spacing = 5
 
-    # Display text to show the result of the file selection
-    result_text = ft.Markdown(value="No files selected.")
-    # Create a ProgressBar control (determinate)
-    progress_bar = ft.ProgressBar(width="90%", value=0.0)
-
     # # Does setting the working directory here help with file paths?  Yes, somewhat.
     # os.chdir(os.path.dirname("/Users/mcfatem/"))
     # logger.info(f"Current working directory: {os.getcwd()}")
     # logger.info(f"Script directory: {os.path.dirname(__file__)}")
-
-    # Create an instance of the FilePicker control
-    file_picker = ft.FilePicker(on_result=pick_files_result)
-    page.overlay.append(file_picker)
         
     # Create a SnackBar instance for displaying messages
     page.snack_bar = ft.SnackBar(
@@ -112,331 +96,132 @@ def main(page: ft.Page):
     )
 
     
-    # Build a light gray Flet container to hold Processing Mode options with a RadioGroup of controls for 
-    # 'Alma' or 'CollectionBuilder' modes. 
+    # # Digital Object File Selection
+    # # =================================================================================================
     
-    # Define the change event handler for the RadioGroup
-    def mode_radio_group_changed(e):
-        mode = e.control.value
-        page.session.set("mode", mode)
-        msg = f"Selected processing mode: '{mode}'"
-        utils.show_message(page, msg, False)
+    # # Build a purple Flet container to hold Digital Object File Selection options with a RadioGroup of 
+    # # file_selection controls read from file_sources.json. If the selected option is a valid file path add 
+    # # a nested white Flet container with a to be determined RadioGroup of controls.  Add a Flet ElevatedButton 
+    # # with a title of "Select Files" and on_change action named select_files, plus another ElevatedButton with 
+    # # a title of "Process Files" and on_change action process_files.  
+    
+    # # Controls for the nested container (initially empty)
+    # nested_controls_radio_group = ft.RadioGroup(content=ft.Column(spacing=0))
+    # nested_container = ft.Container(
+    #     content=nested_controls_radio_group,
+    #     visible=False,
+    #     bgcolor=ft.Colors.WHITE,
+    #     padding=10,
+    #     border_radius=10,
+    # )
+
+    # # def select_files(e):
+    # #     """Action for the "Select Files" button."""
+    # #     logger.info("Select Files button clicked.")
+    # #     # Add your file selection logic here.
+    # #     # For example, open a file picker or perform file-related operations.
+    # #     # The nested_controls_radio_group can be populated here.
+    # #     page.update( )
+
         
-        # Add logic here to handle the selection, for example:
-        # if e.control.value == "Alma":
-        #     ...
-        # elif e.control.value == "CollectionBuilder":
-        #     ...
+    # def files_radio_group_changed(e):
+    #     """Handler for the radio group selection change."""
+    #     selected_path = e.control.value
+    #     logger.info(f"Selected option: {selected_path}")
 
-    # Create the RadioGroup with the two radio buttons
-    mode_options = ft.RadioGroup(
-        content=ft.Column(
-            controls=[
-                ft.Radio(value="Alma", label="Alma"),
-                ft.Radio(value="CollectionBuilder", label="CollectionBuilder"),
-            ],
-            expand=True,
-            spacing=0
-        ),
-        on_change=mode_radio_group_changed,
-    )
-
-    # Create the light gray container
-    processing_mode_container = ft.Container(
-        content=ft.Column(
-            controls=[
-                ft.Text(
-                    "Processing Mode",
-                    size=18,
-                    weight=ft.FontWeight.BOLD,
-                    text_align=ft.TextAlign.CENTER,
-                ),
-                mode_options,
-            ],
-            expand=True,
-        ),
-        # Use a gray color for the background
-        bgcolor=ft.Colors.GREY_300,
-        padding=10,
-        border_radius=10
-    )
-
-    # Create a main_menu_container to hold a horizontal list of button controls
-    main_menu_container = ft.Container(
-
-        content=ft.Row(
-            controls=[
-                ft.ElevatedButton(
-                    text="Home",
-                    icon=ft.Icons.HOME,
-                    on_click=lambda e: print("Home button clicked")
-                ),
-                ft.ElevatedButton(
-                    text="Profile",
-                    icon=ft.Icons.PERSON,
-                    on_click=lambda e: print("Profile button clicked")
-                ),
-                ft.ElevatedButton(
-                    text="Settings",
-                    icon=ft.Icons.SETTINGS,
-                    on_click=lambda e: print("Settings button clicked")
-                ),
-
-                # Define the close_button
-                close_button := ft.ElevatedButton(
-                    text="Close App",
-                    icon=ft.Icons.CLOSE,
-                    on_click=utils.close_app
-                ),
-
-                # Create an ElevatedButton 'Create Selected Derivatives' with the click event handler
-                create_derivatives_button := ft.ElevatedButton(
-                    text="Create Selected",
-                    icon=ft.Icons.ADD_OUTLINED,
-                    on_click=utils.process_files
-                ),
-
-            ],
-            # Align buttons horizontally in the center
-            alignment=ft.MainAxisAlignment.CENTER,
-            # Add spacing between the buttons
-            spacing=5,
-        ),
-        # Container styling
-        padding=ft.padding.all(10),
-        bgcolor=ft.Colors.with_opacity(1, ft.Colors.RED),
-        border_radius=ft.border_radius.all(10),
-        # width=500,
-    )
-
-
-    # Build a light blue Flet container to hold Azure Blob Storage options with a RadioGroup of control values and labels 
-    # read from 'azure_blob.json' containers. If 'collectionbuilder' is selected, add a light 
-    # green container and RadioGroup of options read from the cb_collections.json file.
-    
-    # Placeholder for the inner container, initially hidden
-    collection_options_container = ft.Container(visible=False)
-
-    def load_blob_options():
-        """Loads radio options from a .json file."""
-        try:
-            with open(azure_blobs_JSON, "r") as f:
-                data = json.load(f)
-                options = [
-                    ft.Radio(value=item, label=item)
-                    for item in data["options"]
-                ]
-            return options
-        except FileNotFoundError:
-            return [ft.Text(f"Error: {azure_blobs_JSON} not found.")]
-
-
-    def load_collection_options():
-        """Loads radio options from a .json file."""
-        try:
-            with open(cb_collections_JSON, "r") as f:
-                data = json.load(f)
-                options = [
-                    ft.Radio(value=item, label=item)
-                    for item in data["options"]
-                ]
-            return options
-        except FileNotFoundError:
-            return [ft.Text(f"Error: {cb_collections_JSON} not found.")]
-
-    def blob_radio_group_changed(e):
-        """Event handler for the main RadioGroup."""
-        if e.control.value == "collectionbuilder":
-            collection_options_container.visible = True
-        else:
-            collection_options_container.visible = False
-        page.update()
-
-    # The main light blue container
-    blob_main_container = ft.Container(
-        # width=400,
-        padding=10,
-        bgcolor=ft.Colors.LIGHT_BLUE_100,
-        border_radius=10,
-        content=ft.Column(
-            controls=[
-                ft.Text(
-                    "Azure Blob Storage Container Selection",
-                    size=16,
-                    weight=ft.FontWeight.BOLD,
-                ),
-                ft.RadioGroup(
-                    content=ft.Column(controls=load_blob_options(), expand=True, spacing=0),
-                    on_change=blob_radio_group_changed,
-                ),
-                # The nested light green container, controlled by visibility
-                collection_options_container,
-            ],
-            spacing=0
-        )
-    )
-
-    # The inner light green container, populated with JSON data
-    collection_options_container.content = ft.Container(
-        padding=10,
-        bgcolor=ft.Colors.LIGHT_GREEN_200,
-        border_radius=10,
-        content=ft.Column(
-            controls=[
-                ft.Text(
-                    "Collection Builder Options",
-                    size=14,
-                    weight=ft.FontWeight.BOLD,
-                ),
-                ft.RadioGroup(
-                    content=ft.Column(controls=load_collection_options(), expand=True)
-                )
-            ],
-            expand=True,
-            spacing=0
-        ),
-    )
-    
-    # Digital Object File Seletion
-    # =================================================================================================
-    
-    # Build a purple Flet container to hold Digital Object File Selection options with a RadioGroup of 
-    # file_selection controls read from file_sources.json. If the selected option is a valid file path add 
-    # a nested white Flet container with a to be determined RadioGroup of controls.  Add a Flet ElevatedButton 
-    # with a title of "Select Files" and on_change action named select_files, plus another ElevatedButton with 
-    # a title of "Process Files" and on_change action process_files.  
-    
-    # Controls for the nested container (initially empty)
-    nested_controls_radio_group = ft.RadioGroup(content=ft.Column(spacing=0))
-    nested_container = ft.Container(
-        content=nested_controls_radio_group,
-        visible=False,
-        bgcolor=ft.Colors.WHITE,
-        padding=10,
-        border_radius=10,
-    )
-
-    # def select_files(e):
-    #     """Action for the "Select Files" button."""
-    #     logger.info("Select Files button clicked.")
-    #     # Add your file selection logic here.
-    #     # For example, open a file picker or perform file-related operations.
-    #     # The nested_controls_radio_group can be populated here.
+    #     # Clear any previously nested controls no matter what the new selection is
+    #     nested_controls_radio_group.content.controls.clear( )
+    #     nested_container.visible = False
     #     page.update( )
 
-        
-    def files_radio_group_changed(e):
-        """Handler for the radio group selection change."""
-        selected_path = e.control.value
-        logger.info(f"Selected option: {selected_path}")
+    #     expanded_path = None
 
-        # Clear any previously nested controls no matter what the new selection is
-        nested_controls_radio_group.content.controls.clear( )
-        nested_container.visible = False
-        page.update( )
-
-        expanded_path = None
-
-        # Check if the selected path contains a slash indicating it IS a path
-        if '/' in selected_path:
-            # If the selected_path begins with a tilde, translate that into the user's home directory
-            if selected_path.startswith("~"):
-                expanded_path = os.path.expanduser(selected_path)
-            else:
-                expanded_path = selected_path
+    #     # Check if the selected path contains a slash indicating it IS a path
+    #     if '/' in selected_path:
+    #         # If the selected_path begins with a tilde, translate that into the user's home directory
+    #         if selected_path.startswith("~"):
+    #             expanded_path = os.path.expanduser(selected_path)
+    #         else:
+    #             expanded_path = selected_path
             
-            # Check if the selected path is NOT a valid directory
-            if not os.path.isdir(expanded_path):
-                msg = f"Selected option '{expanded_path}' does not appear to be a valid path. Is it mapped to this device?"
-                logger.error(msg)
-                utils.show_message(page, msg, True)
-            else:  # Hide the nested container if the path is valid, and call open_file_picker( )
-                nested_container.visible = False
-                open_file_picker(e)
+    #         # Check if the selected path is NOT a valid directory
+    #         if not os.path.isdir(expanded_path):
+    #             msg = f"Selected option '{expanded_path}' does not appear to be a valid path. Is it mapped to this device?"
+    #             logger.error(msg)
+    #             utils.show_message(page, msg, True)
+    #         else:  # Hide the nested container if the path is valid, and call open_file_picker( )
+    #             nested_container.visible = False
+    #             open_file_picker(e)
 
-        else:  # Choosing the fuzzy search option, reading a list of filenames from a worksheet
-            msg = f"Sorry, this option has not been implemented.  Check back later, please."
-            logger.error(msg)
-            utils.show_message(page, msg, True)
+    #     else:  # Choosing the fuzzy search option, reading a list of filenames from a worksheet
+    #         msg = f"Sorry, this option has not been implemented.  Check back later, please."
+    #         logger.error(msg)
+    #         utils.show_message(page, msg, True)
 
-            # # Populate the nested container with controls
-            # nested_controls_radio_group.content.controls.clear( )
-            # nested_controls_radio_group.content.controls.append(
-            #     ft.Text(f"Contents of {selected_path}:", weight=ft.FontWeight.BOLD)
-            # )
-            # # Example: add placeholder radio buttons for further selection
-            # nested_controls_radio_group.content.controls.extend([
-            #     ft.Radio(value="option1", label="Option 1 from directory"),
-            #     ft.Radio(value="option2", label="Option 2 from directory"),
-            # ])
-            # nested_container.visible = True
+    #         # # Populate the nested container with controls
+    #         # nested_controls_radio_group.content.controls.clear( )
+    #         # nested_controls_radio_group.content.controls.append(
+    #         #     ft.Text(f"Contents of {selected_path}:", weight=ft.FontWeight.BOLD)
+    #         # )
+    #         # # Example: add placeholder radio buttons for further selection
+    #         # nested_controls_radio_group.content.controls.extend([
+    #         #     ft.Radio(value="option1", label="Option 1 from directory"),
+    #         #     ft.Radio(value="option2", label="Option 2 from directory"),
+    #         # ])
+    #         # nested_container.visible = True
             
-        page.update( )
+    #     page.update( )
 
-    # Read file sources from JSON
-    try:
-        with open(file_sources_JSON, "r") as f:
-            file_sources = json.load(f)
-    except FileNotFoundError:
-        file_sources = [f"Error: {file_sources_JSON} not found"]
-    except json.JSONDecodeError:
-        file_sources = [f"Error: Could not decode {file_sources_JSON}"]
+    # # Read file sources from JSON
+    # try:
+    #     with open(file_sources_JSON, "r") as f:
+    #         file_sources = json.load(f)
+    # except FileNotFoundError:
+    #     file_sources = [f"Error: {file_sources_JSON} not found"]
+    # except json.JSONDecodeError:
+    #     file_sources = [f"Error: Could not decode {file_sources_JSON}"]
 
-    # Create the main RadioGroup
-    file_selection_radios = ft.RadioGroup(
-        content=ft.Column(
-            [ft.Radio(value=source, label=source) for source in file_sources],
-            expand=True,
-            spacing=0
-        ),
-        on_change=files_radio_group_changed,
-    )
+    # # Create the main RadioGroup
+    # file_selection_radios = ft.RadioGroup(
+    #     content=ft.Column(
+    #         [ft.Radio(value=source, label=source) for source in file_sources],
+    #         expand=True,
+    #         spacing=0
+    #     ),
+    #     on_change=files_radio_group_changed,
+    # )
 
-    # Main object_files container
-    object_files_container = ft.Container(
-        content=ft.Column(
-            [
-                ft.Text(
-                    "Digital Object File Selection",
-                    size=18,
-                    weight=ft.FontWeight.BOLD,
-                    text_align=ft.TextAlign.CENTER,
-                ),
-                file_selection_radios,
-                nested_container,  # Nested white container
+    # # Main object_files container
+    # object_files_container = ft.Container(
+    #     content=ft.Column(
+    #         [
+    #             ft.Text(
+    #                 "Digital Object File Selection",
+    #                 size=18,
+    #                 weight=ft.FontWeight.BOLD,
+    #                 text_align=ft.TextAlign.CENTER,
+    #             ),
+    #             file_selection_radios,
+    #             nested_container,  # Nested white container
         
-            ],
-            spacing=0
-        ),
-        padding=10,
-        bgcolor=ft.Colors.PURPLE_100,
-        border_radius=10,
-    )
+    #         ],
+    #         spacing=0
+    #     ),
+    #     padding=10,
+    #     bgcolor=ft.Colors.PURPLE_100,
+    #     border_radius=10,
+    # )
     
 
-    # Create a container to display process status/output.
+    # Create containers from defined classes
     # -----------------------------------------------------------
-    status_container = ft.Container(
-        content=ft.Column(
-            scroll=ft.ScrollMode.ADAPTIVE,
-            expand=True,
-            controls=[
-                ft.Text(
-                    "Status",
-                    size=18,
-                    weight=ft.FontWeight.BOLD,
-                    text_align=ft.TextAlign.CENTER,
-                ),
-                # Add a text area and progress_bar to display the result of operations
-                ft.Row([result_text, progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
-            ],
-            spacing=0,
-        ),
-        padding=10,
-        bgcolor=ft.Colors.GREEN_100,
-        border_radius=10,     
+    main_menu_container = MainMenuContainer( )
+    mode_container = ModeSelectionContainer( )
+    azure_selection_container = AzureSelectionContainer( )
+    object_selection_container = ObjectSelectionContainer( )
+    status_container = StatusContainer( )
+    
 
-    )
     
     
     
@@ -455,9 +240,9 @@ def main(page: ft.Page):
         ft.Column(
             controls=[
                 main_menu_container,
-                processing_mode_container, 
-                blob_main_container,
-                object_files_container,
+                mode_container, 
+                azure_selection_container,
+                object_selection_container,
                 status_container,
             ],
             expand=True,

@@ -1,7 +1,5 @@
-{
-  "options": 
-    [
-      "physics_museum",
-      "student_activism"
-    ]
-}
+[
+    "physics_museum",
+    "student_activism"
+]
+

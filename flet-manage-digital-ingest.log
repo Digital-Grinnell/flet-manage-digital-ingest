@@ -187,3 +187,138 @@
 2025-09-19 07:31:46,385 - INFO - Selected option: ~/Downloads
 2025-09-19 07:31:54,471 - ERROR - File selection was cancelled.
 2025-09-19 07:32:56,240 - INFO - Initialized logging for __main__
+2025-09-19 07:36:28,283 - INFO - Initialized logging for __main__
+2025-09-19 07:36:38,949 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 07:37:04,227 - INFO - Selected option: ~/Downloads
+2025-09-19 07:37:14,411 - INFO - Selected file: FAA-Drone-Registration-OZgM8wte.pdf (Path: /Users/mark/Documents/FAA-Drone-Registration-OZgM8wte.pdf)
+2025-09-19 07:37:14,411 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-19 07:37:55,616 - INFO - Initialized logging for __main__
+2025-09-19 07:38:09,813 - INFO - Selected option: ~/Downloads
+2025-09-19 07:38:13,007 - ERROR - File selection was cancelled.
+2025-09-19 07:38:21,511 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 07:55:40,003 - INFO - Initialized logging for __main__
+2025-09-19 07:55:52,104 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 07:55:58,842 - INFO - Selected option: ~/Downloads
+2025-09-19 07:56:34,762 - INFO - Selected file: Morgan-Wieting-Rental-August-2025.pdf (Path: /Users/mark/Documents/Morgan-Wieting-Rental-August-2025.pdf)
+2025-09-19 07:56:36,530 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 73, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-19 08:02:33,064 - INFO - Initialized logging for __main__
+2025-09-19 08:06:24,918 - INFO - Initialized logging for __main__
+2025-09-19 08:06:30,343 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 08:06:32,750 - INFO - Selected option: ~/Downloads
+2025-09-19 08:06:49,155 - INFO - Selected file: UAS_how_to_label_Infographic.pdf (Path: /Users/mark/Documents/UAS_how_to_label_Infographic.pdf)
+2025-09-19 08:06:50,840 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TypeError("'SessionStorage' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.12/3.12.10/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/.venv/lib/python3.12/site-packages/flet/core/page.py", line 906, in wrapper
+    handler(*args)
+  File "/Users/mark/GitHub/flet-manage-digital-ingest/main.py", line 78, in pick_files_result
+    page.session["selected_object_paths"].append(file.path)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'SessionStorage' object is not subscriptable
+2025-09-19 08:17:22,937 - INFO - Initialized logging for __main__
+2025-09-19 08:18:03,004 - INFO - Initialized logging for __main__
+2025-09-19 08:18:10,327 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 08:18:12,655 - INFO - Selected option: ~/Downloads
+2025-09-19 08:18:31,695 - INFO - Selected file: Grandma-Miriam-McFate-Prayers-and-More-1972-06-12.pdf (Path: /Users/mark/Documents/Grandma-Miriam-McFate-Prayers-and-More-1972-06-12.pdf)
+2025-09-19 08:20:10,372 - INFO - Initialized logging for __main__
+2025-09-19 08:20:12,520 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 08:20:14,826 - INFO - Selected option: ~/Downloads
+2025-09-19 08:26:11,926 - INFO - Selected file: Grandma-Miriam-McFate-Prayers-and-More-1972-06-12.pdf (Path: /Users/mark/Documents/Grandma-Miriam-McFate-Prayers-and-More-1972-06-12.pdf)
+2025-09-19 08:26:16,471 - INFO - Selected file: UAS_how_to_label_Infographic.pdf (Path: /Users/mark/Documents/UAS_how_to_label_Infographic.pdf)
+2025-09-19 08:26:20,910 - INFO - 2 files selected from /Users/mark/Documents.
+2025-09-19 09:56:16,686 - INFO - Initialized logging for __main__
+2025-09-19 10:15:38,711 - INFO - Initialized logging for __main__
+2025-09-19 10:15:52,644 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 10:16:15,651 - INFO - Initialized logging for __main__
+2025-09-19 10:16:16,588 - INFO - Initialized logging for __main__
+2025-09-19 10:16:45,376 - INFO - Initialized logging for __main__
+2025-09-19 10:17:06,437 - INFO - Initialized logging for __main__
+2025-09-19 10:17:21,016 - INFO - Initialized logging for __main__
+2025-09-19 10:17:22,443 - INFO - Initialized logging for __main__
+2025-09-19 10:38:05,873 - INFO - Initialized logging for __main__
+2025-09-19 10:39:51,172 - INFO - Initialized logging for __main__
+2025-09-19 10:40:36,474 - INFO - Initialized logging for __main__
+2025-09-19 10:42:13,281 - INFO - Initialized logging for __main__
+2025-09-19 10:42:15,177 - INFO - Initialized logging for __main__
+2025-09-19 10:43:20,240 - INFO - Initialized logging for __main__
+2025-09-19 10:56:38,732 - INFO - Initialized logging for __main__
+2025-09-19 11:05:42,690 - INFO - Initialized logging for __main__
+2025-09-19 11:07:10,996 - INFO - Initialized logging for __main__
+2025-09-19 11:08:39,664 - INFO - Initialized logging for __main__
+2025-09-19 11:10:28,600 - INFO - Initialized logging for __main__
+2025-09-19 11:12:10,838 - INFO - Initialized logging for __main__
+2025-09-19 11:13:14,493 - INFO - Initialized logging for __main__
+2025-09-19 11:24:05,252 - INFO - Initialized logging for __main__
+2025-09-19 11:28:26,139 - INFO - Initialized logging for __main__
+2025-09-19 11:29:23,039 - INFO - Initialized logging for __main__
+2025-09-19 11:30:02,190 - INFO - Initialized logging for __main__
+2025-09-19 11:30:38,155 - INFO - Initialized logging for __main__
+2025-09-19 11:31:15,616 - INFO - Initialized logging for __main__
+2025-09-19 11:33:29,754 - INFO - Initialized logging for __main__
+2025-09-19 11:36:34,739 - INFO - Initialized logging for __main__
+2025-09-19 11:37:46,364 - INFO - Initialized logging for __main__
+2025-09-19 11:38:20,526 - INFO - Initialized logging for __main__
+2025-09-19 11:39:06,362 - INFO - Initialized logging for __main__
+2025-09-19 11:39:11,355 - INFO - Initialized logging for __main__
+2025-09-19 14:09:13,025 - INFO - Initialized logging for __main__
+2025-09-19 14:09:46,332 - INFO - Initialized logging for __main__
+2025-09-19 14:09:53,695 - INFO - Initialized logging for __main__
+2025-09-19 14:10:54,700 - INFO - Initialized logging for __main__
+2025-09-19 14:12:18,629 - INFO - Initialized logging for __main__
+2025-09-19 14:13:19,315 - INFO - Initialized logging for __main__
+2025-09-19 14:14:36,776 - INFO - Initialized logging for __main__
+2025-09-19 14:15:26,063 - INFO - Initialized logging for __main__
+2025-09-19 14:21:15,589 - INFO - Initialized logging for __main__
+2025-09-19 14:21:41,991 - INFO - Initialized logging for __main__
+2025-09-19 14:21:46,055 - INFO - Initialized logging for __main__
+2025-09-19 14:54:55,989 - INFO - Initialized logging for __main__
+2025-09-19 14:55:25,062 - INFO - Initialized logging for __main__
+2025-09-19 14:55:33,421 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:02:09,411 - INFO - Initialized logging for __main__
+2025-09-19 15:09:50,377 - INFO - Initialized logging for __main__
+2025-09-19 15:10:10,438 - INFO - Initialized logging for __main__
+2025-09-19 15:13:55,242 - INFO - Initialized logging for __main__
+2025-09-19 15:14:22,210 - INFO - Initialized logging for __main__
+2025-09-19 15:14:53,060 - INFO - Initialized logging for __main__
+2025-09-19 15:19:45,297 - INFO - Initialized logging for __main__
+2025-09-19 15:19:58,707 - INFO - Initialized logging for __main__
+2025-09-19 15:20:11,024 - INFO - Initialized logging for __main__
+2025-09-19 15:20:18,657 - INFO - Initialized logging for __main__
+2025-09-19 15:21:34,096 - INFO - Initialized logging for __main__
+2025-09-19 15:21:39,277 - INFO - Selected processing mode: 'CollectionBuilder'
+2025-09-19 15:22:02,179 - INFO - Initialized logging for __main__
+2025-09-19 15:22:04,825 - INFO - Initialized logging for __main__
+2025-09-19 15:22:09,831 - INFO - Initialized logging for __main__
+2025-09-19 15:23:44,966 - INFO - Initialized logging for __main__
+2025-09-19 15:24:03,092 - INFO - Initialized logging for __main__
+2025-09-19 15:25:21,610 - INFO - Initialized logging for __main__
+2025-09-19 15:26:35,679 - INFO - Initialized logging for __main__
+2025-09-19 15:27:14,374 - INFO - Initialized logging for __main__
+2025-09-19 15:29:57,114 - INFO - Initialized logging for __main__
+2025-09-19 15:30:22,817 - INFO - Initialized logging for __main__
+2025-09-19 15:31:00,381 - INFO - Initialized logging for __main__
