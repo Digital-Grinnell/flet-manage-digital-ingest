@@ -1,4 +1,5 @@
 import flet as ft
+from mcfate_flet_container import McFateFletContainer
 
 # class SingleColumnContainer(ft.Column):
 #     def __init__(self, controls=None, **kwargs):
@@ -7,7 +8,7 @@ import flet as ft
 #             **kwargs
 #         )
 
-class StatusContainer(ft.Container):
+class StatusContainer(McFateFletContainer):
     
     # Define attributes for result_text and progress_bar
     result_text = ft.Markdown(value="Nothing to display.")
@@ -16,7 +17,7 @@ class StatusContainer(ft.Container):
     # Class constructor
     def __init__(self, **kwargs):
 
-        super().__init__(
+        super( ).__init__(
             content=ft.Column(
                 controls=[
                     # The container heading
@@ -29,15 +30,15 @@ class StatusContainer(ft.Container):
                     # Add rows of text area and progress_bar to display the result of operations
                     ft.Row([self.result_text, self.progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
                 ],  
-                scroll=ft.ScrollMode.ADAPTIVE,
-                expand=True,
-                spacing=0,
+                # scroll=ft.ScrollMode.ADAPTIVE,
+                # expand=True,
+                # spacing=0,
             ),
-            padding=10,
-            bgcolor=ft.Colors.GREEN_100,
-            border_radius=10,    
-            width=800, 
-            **kwargs
+            # padding=10,
+            # bgcolor=ft.Colors.GREEN_100,
+            # border_radius=10,    
+            # width=800, 
+            # **kwargs
         )
 
 
@@ -67,11 +68,21 @@ class StatusContainer(ft.Container):
 
 
 def main(page: ft.Page):
-    status = StatusContainer( )
+    status = McFateFletContainer(
+        title="Status Container", 
+        controls=[
+            ft.Text("This is a test of the McFateFletContainer", color=ft.Colors.BLUE_900),
+            ft.ProgressBar(width="90%", value=0.5)
+        ],
+        background=ft.Colors.YELLOW_100,
+    )
+    
+    # status = McFateFletContainer( )
+    
     page.add(status)
 
-    status.result_text.value = "Hello, World!"
-    status.progress_bar.value = 0.5
+    # status.result_text.value = "Hello, World!"
+    # status.progress_bar.value = 0.5
     page.update( )
   
 
