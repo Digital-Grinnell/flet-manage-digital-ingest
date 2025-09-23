@@ -27,8 +27,10 @@ class StatusContainer(McFateFletContainer):
                         weight=ft.FontWeight.BOLD,
                         text_align=ft.TextAlign.CENTER,
                     ),
-                    # Add rows of text area and progress_bar to display the result of operations
-                    ft.Row([self.result_text, self.progress_bar], alignment=ft.MainAxisAlignment.CENTER, wrap=True),
+                    # Add rows for Markdown text and progress_bar 
+                    ft.Row([self.result_text, self.progress_bar],  
+                           alignment=ft.MainAxisAlignment.CENTER, wrap=True),
+                    
                 ],  
                 # scroll=ft.ScrollMode.ADAPTIVE,
                 # expand=True,
@@ -72,7 +74,8 @@ def main(page: ft.Page):
         title="Status Container", 
         controls=[
             ft.Text("This is a test of the McFateFletContainer", color=ft.Colors.BLUE_900),
-            ft.ProgressBar(width="90%", value=0.5)
+            ft.ProgressBar(width="90%", value=0.5),
+            
         ],
         background=ft.Colors.YELLOW_100,
     )
