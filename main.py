@@ -13,6 +13,9 @@ from object_selection import ObjectSelectionContainer
 # To create a Flet app in an object-oriented way, define a class that takes and stores the page object as an attribute, then build the interface inside the class using methods. Here’s how to structure a basic Flet app in this style:
 
 class MyApp:
+    
+    # MyApp's class constructor definiing the app and main page.
+    # ---------------------------------------------------------------------------
     def __init__(self, page: ft.Page):
         logger = my_logger.init_logger( )
 
@@ -64,14 +67,12 @@ class MyApp:
                 expand=True,
             ),
         )
+        
+        # Add the file_picker container as an overlay
         self.page.overlay.append(ObjectSelectionContainer.file_picker)
 
-
-    def on_click(self, e):
-        self.page.snack_bar = ft.SnackBar(ft.Text("Button clicked!"))
-        self.page.snack_bar.open = True
-        self.page.update()
-
+# Simple 'main' method to run the app.
+# ------------------------------------------------------------------------
 def main(page: ft.Page):
     app = MyApp(page)
 
